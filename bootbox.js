@@ -1,5 +1,5 @@
 /**
- * bootbox.js [master branch]
+ * bootbox.js [v4.4.0]
  *
  * http://bootboxjs.com/license.txt
  */
@@ -29,7 +29,7 @@
   // the base DOM structure needed to create a modal
   var templates = {
     dialog:
-      "<div class='bootbox modal' tabindex='-1' role='dialog' aria-hidden='true'>" +
+      "<div class='bootbox modal' tabindex='-1' role='dialog'>" +
         "<div class='modal-dialog'>" +
           "<div class='modal-content'>" +
             "<div class='modal-body'><div class='bootbox-body'></div></div>" +
@@ -173,7 +173,8 @@
       }
 
       if (!button.className) {
-        if (total <= 2 && index === total-1) {
+        // if (total <= 2 && index === total-1) {
+        if (index === 0) {
           // always add a primary to the main option in a two-button dialog
           button.className = "btn-primary";
         } else {
@@ -318,7 +319,7 @@
   exports.confirm = function() {
     var options;
 
-    options = mergeDialogOptions("confirm", ["cancel", "confirm"], ["message", "callback"], arguments);
+    options = mergeDialogOptions("confirm", ["confirm", "cancel"], ["message", "callback"], arguments);
 
     /**
      * overrides; undo anything the user tried to set they shouldn't have
@@ -361,14 +362,14 @@
     // just because of 'value' and 'inputType' - can we refactor?
     defaults = {
       className: "bootbox-prompt",
-      buttons: createLabels("cancel", "confirm"),
+      buttons: createLabels("confirm", "cancel"),
       value: "",
       inputType: "text"
     };
 
     options = validateButtons(
       mergeArguments(defaults, arguments, ["title", "callback"]),
-      ["cancel", "confirm"]
+      ["confirm", "cancel"]
     );
 
     // capture the user's show value; we always set this to false before
@@ -794,11 +795,6 @@
    * unlikely to be required. If this gets too large it can be split out into separate JS files.
    */
   var locales = {
-    ar : {
-      OK      : "موافق",
-      CANCEL  : "الغاء",
-      CONFIRM : "تأكيد"
-    },
     bg_BG : {
       OK      : "Ок",
       CANCEL  : "Отказ",
@@ -857,7 +853,7 @@
     fr : {
       OK      : "OK",
       CANCEL  : "Annuler",
-      CONFIRM : "Confirmer"
+      CONFIRM : "D'accord"
     },
     he : {
       OK      : "אישור",
